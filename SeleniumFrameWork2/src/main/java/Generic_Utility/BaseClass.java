@@ -20,6 +20,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
 	protected WebDriver driver;
+	Property_Utility plib;
+	ChromeOptions options;
 
 	@BeforeSuite
 	public void BS() {
@@ -33,34 +35,36 @@ public class BaseClass {
 
 	@BeforeClass
 	public void BC() throws Throwable {
+		System.out.println("@BeforeClass");
 		// Setup browser
-		Property_Utility plib = new Property_Utility();
-		String BROWSER = plib.getKeyValue("browser");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
+				plib = new Property_Utility();
+				String BROWSER = plib.getKeyValue("browser");
+				options = new ChromeOptions();
+				options.addArguments("--remote-allow-origins=*");
 
-		driver = new ChromeDriver(options);
+				driver = new ChromeDriver(options);
 
-		if (BROWSER.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver(options);
-		} else if (BROWSER.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-		} else if (BROWSER.equalsIgnoreCase("edge")) {
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
-		}
-		
-		driver.manage().window().maximize();
-		Wbdriver_utility wlib = new Wbdriver_utility();
-		wlib.implicitwait(driver);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				if (BROWSER.equalsIgnoreCase("chrome")) {
+					WebDriverManager.chromedriver().setup();
+					driver = new ChromeDriver(options);
+				} else if (BROWSER.equalsIgnoreCase("firefox")) {
+					WebDriverManager.firefoxdriver().setup();
+					driver = new FirefoxDriver();
+				} else if (BROWSER.equalsIgnoreCase("edge")) {
+					WebDriverManager.edgedriver().setup();
+					driver = new EdgeDriver();
+				}
+
+				driver.manage().window().maximize();
+				Wbdriver_utility wlib = new Wbdriver_utility();
+				wlib.implicitwait(driver);
+				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
 	}
 
 	@BeforeMethod
 	public void BM() throws Throwable {
-
+		System.out.println("@BeforeMethod");
 		Property_Utility plib = new Property_Utility();
 		String URL = plib.getKeyValue("url");
 		String USERNAME = plib.getKeyValue("username");
@@ -73,7 +77,7 @@ public class BaseClass {
 
 	@AfterMethod
 	public void AM() {
-
+		System.out.println("@AfterMethod");
 		HomePage home = new HomePage(driver);
 		home.signoutLink(driver);
 		System.out.println("Logout Application");
@@ -81,7 +85,7 @@ public class BaseClass {
 
 	@AfterClass
 	public void Ac() {
-
+		System.out.println("@AfterClass");
 		driver.quit();
 		System.out.println("Browser closed");
 	}

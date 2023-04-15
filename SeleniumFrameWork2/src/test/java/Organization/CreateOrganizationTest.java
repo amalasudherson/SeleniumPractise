@@ -41,8 +41,28 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateOrganizationTest extends BaseClass {
 
-	@Test
+	@Test(priority = 1)
 	public void createOrganization() throws Throwable {		
+
+		HomePage home = new HomePage(driver);
+		home.clickorganizationlinkText();
+
+		OrganizationCreationPage org = new OrganizationCreationPage(driver);
+		org.organizationcreateimage();
+		Java_Utility jlib = new Java_Utility();
+		int RanNum = jlib.getRandomNum();
+		Excel_Utility elib = new Excel_Utility();
+		String exceldata = elib.getExcelData("Organization", 0, 0) + RanNum;
+
+		org.organizationnamestext(exceldata);
+
+		org.savebutton();
+		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
+		validate.organizationValidation(driver, exceldata);
+	}
+	
+	@Test(priority = 2)
+	public void createOrganization2() throws Throwable {		
 
 		HomePage home = new HomePage(driver);
 		home.clickorganizationlinkText();

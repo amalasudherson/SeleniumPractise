@@ -31,7 +31,7 @@ import Pom.ProductCreationPage;
 import Pom.ValidationAndVerificationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CeateCampaignwithProduct  extends BaseClass{
+public class CeateCampaignwithProducttest  extends BaseClass{
 
 	@Test(groups = "regressiontest")
 	public void CeateCampaignwithProduct() throws Throwable

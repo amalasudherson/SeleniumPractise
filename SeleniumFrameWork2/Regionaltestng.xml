@@ -10,7 +10,7 @@
 	 </methods>
       </class>
       
-       <class name="Organization.CreateOrganizationTest">
+       <class name="Campaigns.CampaignCreationTest">
      <methods>
 		 <include name="createOrganizationTest">
 		 </include>

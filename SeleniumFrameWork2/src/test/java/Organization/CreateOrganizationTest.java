@@ -64,13 +64,15 @@ public class CreateOrganizationTest extends BaseClass {
 		//home.signoutLink(driver);
 		
 	}
-}
+
+
 	
-	public void method1()
+	/*public void method1()
 	{
 		System.out.println("method running");
 	}
 
+	
 	@Test(groups = "smoketest")
 	public void CampaignCreationTest() throws Throwable {
 
@@ -84,8 +86,7 @@ public class CreateOrganizationTest extends BaseClass {
 		// WebDriver driver1 = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-
+		
 		FileInputStream fis = new FileInputStream(".\\src\\test\\resources\\propertyFileData.properties"); 
 		
         
@@ -96,48 +97,54 @@ public class CreateOrganizationTest extends BaseClass {
 		String PASSWORD = pro.getProperty("password");
 
 		driver.get(URL);
+
 		// driver.get("http://localhost:8888/");
 		
+
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 		driver.findElement(By.id("submitButton")).click();
 
+		
 		driver.findElement(By.linkText("More")).click();
 		driver.findElement(By.linkText("Campaigns")).click();
-		driver.findElement(By.xpath("//img[@alt='Create Campaign...']")).click();
 		
+		driver.findElement(By.xpath("//img[@alt='Create Campaign...']")).click();
+
 		Random ran = new Random();
 		int RanNum = ran.nextInt(1000);
+	
 		Excel_Utility elib = new Excel_Utility();
 		String CampData = elib.getExcelData("Campaigns", 0, 1) + RanNum;
 		
 		driver.findElement(By.name("campaignname")).sendKeys(CampData);
+
+		// cam.savebutton();
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
 
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
 		validate.campaingnValidation(driver, CampData);
 
 		 String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
-
-		
 		//String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
-		//String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
-		 if (actdata.contains(CampData))
+		if (actdata.contains(CampData))
 
-			{
-				System.out.println("Pass");
-			} else {
-				System.out.println("Fail");
-			}
-
-			// home.signoutLink(driver);
-			Thread.sleep(1000);
-			driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
-			driver.findElement(By.linkText("Sign Out")).click();
-
+		{
+			System.out.println("Pass");
+		} else {
+			System.out.println("Fail");
 		}
 
-	}
+		// home.signoutLink(driver);
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
+		driver.findElement(By.linkText("Sign Out")).click();
+
+	}*/
+
+}
+
+
 		
 
 		

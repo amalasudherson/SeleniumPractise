@@ -22,12 +22,16 @@ public class Excel_Utility {
 	 * @author Amala
 	 */
 	public String getExcelData(String sheetName, int rowNum, int cellNum) throws Throwable {
-		FileInputStream fes = new FileInputStream("C:\\Users\\AmalaS\\Documents\\SeleniumData\\ExcelSheetData.xlsx");
+		final String dir = System.getProperty("user.dir");
+		System.out.println("current dir = " + dir);
+		FileInputStream fes = new FileInputStream(".\\src\\test\\resources\\ExcelSheetData.xlsx");		
 		Workbook book = WorkbookFactory.create(fes);
 		Sheet sheet = book.getSheet(sheetName);
 		Row row = sheet.getRow(rowNum);
 		Cell cell = row.getCell(cellNum);
 		String value = cell.getStringCellValue();
+
+		System.out.println("value: " + value);
 		return value;
 	}
 

@@ -1,5 +1,6 @@
 package Product;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -9,8 +10,10 @@ import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
 import Generic_Utility.Property_Utility;
 import Generic_Utility.Wbdriver_utility;
+import Pom.CreateProductandDeleteProductCreationPage;
 import Pom.HomePage;
 import Pom.LoginPage;
+import Pom.ValidationAndVerificationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateProductandDeleteProduct {
@@ -49,9 +52,9 @@ public class CreateProductandDeleteProduct {
 			driver=new ChromeDriver();
 		}
 		
-		Webdriver_Utility wlib=new Webdriver_Utility();
-		wlib.max(driver);
-		wlib.implicitlywait(driver);
+		Wbdriver_utility wlib=new Wbdriver_utility();
+		//wlib.max(driver);
+		wlib.implicitwait(driver);
 		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		//Property_Utility plib=new Property_Utility();
@@ -78,7 +81,7 @@ public class CreateProductandDeleteProduct {
 //		driver.findElement(By.id("submitButton")).click();
 		
 		HomePage home=new HomePage(driver);
-		home.productslink();
+		home.ProductLinkText();
 		//driver.findElement(By.xpath("//a[text()='Products']")).click();
 		
 		CreateProductandDeleteProductCreationPage cpdpcp=new CreateProductandDeleteProductCreationPage(driver);
@@ -108,7 +111,7 @@ public class CreateProductandDeleteProduct {
 		cpdpcp.savebutton();
 		//driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
 		
-		home.productslink();
+		//home.productslink();
 		//driver.findElement(By.xpath("//a[text()='Products']")).click();
 		
 		driver.findElement(By.xpath("//table[@class='lvt small']/tbody//td//a[text()='"+productdata+"']/../preceding-sibling::td[1]")).click();
@@ -116,11 +119,11 @@ public class CreateProductandDeleteProduct {
 		cpdpcp.deleteproduct();
 		//driver.findElement(By.xpath("//input[@value='Delete']")).click();
 		
-		wlib.switchtoalertandaccept(driver);
+		wlib.switchToAlertAndAccpect(driver);
 		//Alert alert = driver.switchTo().alert();
 		//alert.accept();
 		
-		ValidationandVerificationPage validate=new ValidationandVerificationPage(driver);
+		ValidationAndVerificationPage validate=new ValidationAndVerificationPage(driver);
 		validate.ValidationandVerificationofProductdeletion(driver, productdata);
 		/*List<WebElement> lists = driver.findElements(By.xpath("(//table[@class='lvt small']/tbody/tr/td[3])[position()>1]"));
 		

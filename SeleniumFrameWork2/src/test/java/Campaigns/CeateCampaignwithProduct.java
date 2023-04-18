@@ -17,20 +17,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
 
+import Generic_Utility.BaseClass;
 import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
 import Generic_Utility.Property_Utility;
 import Generic_Utility.Wbdriver_utility;
+import Pom.CreateCampaignwithProductCreationPage;
 import Pom.HomePage;
 import Pom.LoginPage;
 import Pom.ProductCreationPage;
 import Pom.ValidationAndVerificationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CeateCampaignwithProduct  {
+public class CeateCampaignwithProduct  extends BaseClass{
 
-	public static void main(String[] args) throws Throwable
+	@Test(groups = "regressiontest")
+	public void CeateCampaignwithProduct() throws Throwable
 	{
 	
 		/*String key = "WebDriver driver=new ChromeDriver()";
@@ -50,7 +54,7 @@ public class CeateCampaignwithProduct  {
 		*/
 		
 		//3rd approach to launch multiple through property file browser 
-				WebDriver driver;
+			/*	WebDriver driver;
 				Property_Utility plib=new Property_Utility();
 				String BROWSER = plib.getKeyValue("browser");
 				
@@ -72,17 +76,17 @@ public class CeateCampaignwithProduct  {
 				else
 				{
 					driver=new ChromeDriver();
-				}
+				}*/
 				
-				Wbdriver_utility wlib=new Wbdriver_utility();
-				wlib.max(driver);
-				wlib.implicityWait(driver);
+				//Wbdriver_utility wlib=new Wbdriver_utility();
+				//wlib.max(driver);
+				//wlib.implicitwait(driver);
 				//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 				
 				//Property_Utility plib=new Property_Utility();
-				String URL = plib.getKeyValue("url");
+				/*String URL = plib.getKeyValue("url");
 				String USERNAME = plib.getKeyValue("username");
-				String PASSWORD = plib.getKeyValue("password");
+				String PASSWORD = plib.getKeyValue("password");*/
 				
 				/*FileInputStream fis=new FileInputStream("./src/test/resources/commondata.properties.txt");
 				Properties pro=new Properties();
@@ -91,18 +95,18 @@ public class CeateCampaignwithProduct  {
 				String USERNAME = pro.getProperty("username");
 				String PASSWORD = pro.getProperty("password");*/
 				
-				driver.get(URL);
+				//driver.get(URL);
 				
 				//driver.get("http://localhost:8888/");
-				LoginPage LoginPage=new LoginPage(driver);
-				LoginPage.loginToApp(USERNAME, PASSWORD);
+				//LoginPage LoginPage=new LoginPage(driver);
+				//LoginPage.loginToApp(USERNAME, PASSWORD);
 				
 //				driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 //				driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 //				driver.findElement(By.id("submitButton")).click();
 //				
 				HomePage home=new HomePage(driver);
-				home.productslink();
+				home.ProductLinkText();
 				//driver.findElement(By.xpath("//a[text()='Products']")).click();
 				
 				CreateCampaignwithProductCreationPage ccpcp=new CreateCampaignwithProductCreationPage(driver);
@@ -115,7 +119,7 @@ public class CeateCampaignwithProduct  {
 				int RanNum = jlib.getRandomNum();
 				
 				Excel_Utility elib=new Excel_Utility();
-				String productdata = elib.getExceldata("Product", 0, 0)+RanNum;
+				String productdata = elib.getExcelData("Product", 0, 0)+RanNum;
 				
 				/*FileInputStream fes=new FileInputStream("./src/test/resources/Testdata.xlsx");
 				Workbook book = WorkbookFactory.create(fes);
@@ -129,15 +133,15 @@ public class CeateCampaignwithProduct  {
 				
 				ccpcp.savebutton();
 				//driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-				home.morelink(driver);
-				home.campaignslink();
+				//home.morelink(driver);
+				home.campaignslinkText();
 				ccpcp.campaigncreateimage();
 				//driver.findElement(By.linkText("More")).click();
 				//driver.findElement(By.linkText("Campaigns")).click();
 				//driver.findElement(By.xpath("//img[@alt='Create Campaign...']")).click();
 				
 
-				String CampData = elib.getExceldata("Campaign", 0, 0)+RanNum;
+				String CampData = elib.getExcelData("Campaign", 0, 0)+RanNum;
 				
 				/*FileInputStream fes1=new FileInputStream("./src/test/resources/Testdata.xlsx");
 				Workbook book1 = WorkbookFactory.create(fes1);
@@ -151,7 +155,8 @@ public class CeateCampaignwithProduct  {
 				ccpcp.selectdropdown();
 				//driver.findElement(By.xpath("//img[@alt='Select']")).click();
 				
-				wlib.switchwindow(driver, "Products&action");
+				Wbdriver_utility wlib=new Wbdriver_utility();
+				wlib.switchToWindow(driver, "Products&action");
 				
 				/*Set<String> allId = driver.getWindowHandles();
 				Iterator<String> id = allId.iterator();
@@ -174,7 +179,7 @@ public class CeateCampaignwithProduct  {
 				//Dynamic Xpath
 				driver.findElement(By.xpath("//a[text()='"+productdata+"']")).click();
 				
-				wlib.switchwindow(driver, "Campaigns&action");
+				wlib.switchToWindow(driver, "Campaigns&action");
 				
 				/*Set<String> allId1 = driver.getWindowHandles();
 				Iterator<String> id1 = allId1.iterator();
@@ -191,9 +196,11 @@ public class CeateCampaignwithProduct  {
 				
 				ccpcp.savebutton();
 				//driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-				ValidationandVerificationPage validate=new ValidationandVerificationPage(driver);
-				validate.ValidationandVerificationofCampaignAddition(driver, CampData);
-				validate.ValidationandVerificationofProductAddition(driver, productdata);
+				ValidationAndVerificationPage validate=new ValidationAndVerificationPage(driver);
+				//validate.ValidationAndVerificatioofCampaignAddition(driver, CampData);
+				//validate.ValidationandVerificationofProductAddition(driver, productdata);
+				 validate.campaingnValidation(driver, CampData);
+				 validate.productsValidation(driver, productdata);
 				/*String act = driver.findElement(By.xpath("//span[@id='dtlview_Campaign Name']")).getText();
 				if(act.contains(CampData))
 				{

@@ -47,5 +47,4 @@ public class OrganizationCreationPage {
 	public void savebutton() {
 		savebutton.click();
 	}
-
 }

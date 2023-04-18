@@ -18,7 +18,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
 
+import Generic_Utility.BaseClass;
 import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
 import Generic_Utility.Property_Utility;
@@ -28,10 +30,9 @@ import Pom.ProductCreationPage;
 import Pom.ValidationAndVerificationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CreateProduct {
-
-	@SuppressWarnings("deprecation")
-	public static void main(String[] args) throws Throwable {
+public class CreateProduct extends BaseClass  {
+@Test
+	public void CreateProduct() throws Throwable {
 
 		//1st approach to launch single browser 
 		/*
@@ -54,12 +55,12 @@ public class CreateProduct {
 		} 
 		else
 		{
-			driver = new ChromeDriver();*/
-		}
+			driver = new ChromeDriver();
+		}*/
 		
 
 	//3rd approach to launch multiple through property file browser 
-	WebDriver driver;
+	/*WebDriver driver;
 	Property_Utility plib=new Property_Utility();
 	String BROWSER = plib.getKeyValue("browser");
 	{
@@ -83,15 +84,15 @@ public class CreateProduct {
 		driver=new ChromeDriver();
 	}
 	
-	Wbdriver_utility wlib=new Wbdriver_utility();
-	wlib.max(driver);
-	wlib.implicitwait(driver);
+	Wbdriver_utility wlib=new Wbdriver_utility();*/
+	//wlib.max(driver);
+	//wlib.implicitwait(driver);
 	//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 	
 	//Property_Utility plib=new Property_Utility();
-	String URL = plib.getKeyValue("url");
-	String USERNAME = plib.getKeyValue("username");
-	String PASSWORD = plib.getKeyValue("password");
+	//String URL = plib.getKeyValue("url");
+	//String USERNAME = plib.getKeyValue("username");
+	//String PASSWORD = plib.getKeyValue("password");
 	
 	/*FileInputStream fis=new FileInputStream("./src/test/resources/commondata.properties.txt");
 	Properties pro=new Properties();
@@ -100,19 +101,20 @@ public class CreateProduct {
 	String USERNAME = pro.getProperty("username");
 	String PASSWORD = pro.getProperty("password");*/
 	
-	driver.get(URL);
+	//driver.get(URL);
 	
 	//driver.get("http://localhost:8888/");
 	
-	Pom.LoginPage LoginPage=new Pom.LoginPage(driver);
-	LoginPage.loginToApp(USERNAME, PASSWORD);
+	/*Pom.LoginPage LoginPage=new Pom.LoginPage(driver);
+	LoginPage.loginToApp(USERNAME, PASSWORD);*/
 	
 //	driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 //	driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 //	driver.findElement(By.id("submitButton")).click();
 	
 	HomePage home=new HomePage(driver);
-	home.clickProductLink();
+	//home.morelink(driver);
+	home.ProductLinkText();
 	
 //	driver.findElement(By.xpath("//a[text()='Products']")).click();
 	
@@ -124,9 +126,8 @@ public class CreateProduct {
 	//int RanNum=ran.nextInt(1000);
 	Java_Utility jlib=new Java_Utility();
 	int RanNum = jlib.getRandomNum();
-	
-	Excel_Utility elib=new Excel_Utility();
-	String productdata = elib.getExcelData("Product", 0, 0)+RanNum;
+    Excel_Utility elib=new Excel_Utility();
+	String ProductsData  = elib.getExcelData("Product", 0, 0)+RanNum;
 	
 	/*FileInputStream fes=new FileInputStream("./src/test/resources/Testdata.xlsx");
 	Workbook book = WorkbookFactory.create(fes);
@@ -135,7 +136,7 @@ public class CreateProduct {
 	Cell cell = row.getCell(0);
 	String productdata = cell.getStringCellValue()+RanNum;*/
 	
-	pro.productnametext(productdata);
+	pro.productnametext(ProductsData);
 	//driver.findElement(By.name("productname")).sendKeys(productdata);
 	
 	pro.savebutton();
@@ -143,7 +144,7 @@ public class CreateProduct {
 	
 	ValidationAndVerificationPage validate=new ValidationAndVerificationPage(driver);
 	
-	validate.productsValidation(driver, productdata);
+	validate.productsValidation(driver, ProductsData);
 	
 	/*String actdata = driver.findElement(By.xpath("//span[@class='lvtHeaderText']")).getText();
 	if(actdata.contains(productdata))
@@ -155,7 +156,7 @@ public class CreateProduct {
 		System.out.println("Fail");
 	}*/
 	
-	home.signoutLink(driver);
+	//home.signoutLink(driver);
 //	driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
 //	driver.findElement(By.linkText("Sign Out")).click();
 	

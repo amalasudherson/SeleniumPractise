@@ -16,7 +16,7 @@ public class ProductCreationPage {
 	@FindBy(xpath = "//img[@title='Create Product...']")
 	private WebElement productcreationimage;
 	
-	@FindBy(name = "productname")
+	@FindBy(name = "accountname")
 	private WebElement productnametext;
 	
 	@FindBy(xpath = "//input[@title='Save [Alt+S]']")

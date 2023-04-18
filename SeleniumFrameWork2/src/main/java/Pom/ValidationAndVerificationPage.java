@@ -13,7 +13,10 @@ public class ValidationAndVerificationPage {
 
 	@FindBy(xpath = "//span[@class='dvHeaderText']")
 	private WebElement actualOrganizationData;
+	@FindBy(xpath = "//span[@class='dvHeaderText']")
 	private WebElement actualProductsData;
+	@FindBy(xpath = "//span[@class='dvHeaderText']")
+	private WebElement actualcampaingnsData;
 
 	// getter method
 	public WebElement getActualOrganizationData() {
@@ -41,5 +44,25 @@ public class ValidationAndVerificationPage {
 		}
 	}
 
+	public void campaingnValidation(WebDriver driver, String data) {
+		String actData = actualcampaingnsData.getText();
+
+		if (actData.contains(data)) {
+			System.out.println("pass");
+		} else {
+			System.out.println("fail");
+		}
+		
+	}
+
+	public void ValidationandVerificationofProductdeletion(WebDriver driver, String data) {
+		String actData = actualProductsData.getText();
 	
+		
+		if (actData.contains(data)) {
+			System.out.println("pass");
+		} else {
+			System.out.println("fail");
+		}
+	}
 }

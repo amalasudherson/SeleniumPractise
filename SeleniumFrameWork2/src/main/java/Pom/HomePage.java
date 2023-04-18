@@ -61,9 +61,8 @@ public class HomePage {
 	
 	//Business logic for Product
 	
-	public void clickProductLink()
+	public void ProductLinkText()
 	{
-	WebElement productLinkText = null;
 	productLinkText.click();
 	}
 
@@ -78,7 +77,7 @@ public class HomePage {
 	//Campaign
 	public void campaignslinkText()
 	{
-		WebElement campaignslinkText = null;
+		
 		campaignslinkText.click();
 	}
 	

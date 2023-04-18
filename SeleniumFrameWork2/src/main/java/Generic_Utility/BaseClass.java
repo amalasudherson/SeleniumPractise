@@ -9,6 +9,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -23,17 +25,17 @@ public class BaseClass {
 	Property_Utility plib;
 	ChromeOptions options;
 
-	@BeforeSuite
+	@BeforeSuite(groups = {"smoketest","regressiontest","sanitytest"})
 	public void BS() {
 		System.out.println("DataBase connection");
 	}
 
-	@BeforeTest
+	@BeforeTest(groups = {"smoketest","regressiontest","sanitytest"})
 	public void BT() {
 		System.out.println("Parallel Execution");
 	}
 
-	@BeforeClass
+	@BeforeClass(groups = {"smoketest","regressiontest","sanitytest"})
 	public void BC() throws Throwable {
 		System.out.println("@BeforeClass");
 		// Setup browser
@@ -62,8 +64,9 @@ public class BaseClass {
 
 	}
 
-	@BeforeMethod
+	@BeforeMethod(groups = {"smoketest","regressiontest","sanitytest"})
 	public void BM() throws Throwable {
+		driver.manage().window().maximize();
 		System.out.println("@BeforeMethod");
 		Property_Utility plib = new Property_Utility();
 		String URL = plib.getKeyValue("url");
@@ -75,7 +78,7 @@ public class BaseClass {
 		System.out.println("Login Applicationn");
 	}
 
-	@AfterMethod
+	@AfterMethod(groups = {"smoketest","regressiontest","sanitytest"})
 	public void AM() {
 		System.out.println("@AfterMethod");
 		HomePage home = new HomePage(driver);
@@ -83,17 +86,18 @@ public class BaseClass {
 		System.out.println("Logout Application");
 	}
 
-	@AfterClass
+	@AfterClass(groups = {"smoketest","regressiontest","sanitytest"})
 	public void Ac() {
 		System.out.println("@AfterClass");
 		driver.quit();
 		System.out.println("Browser closed");
 	}
-
+@AfterTest(groups = {"smoketest","regressiontest","sanitytest"})
 	public void AT() {
 		System.out.println("Parallel Execution Done");
 	}
 
+@AfterSuite(groups = {"smoketest","regressiontest","sanitytest"})
 	public void AS() {
 		System.out.println("DataBase Connection close");
 	}

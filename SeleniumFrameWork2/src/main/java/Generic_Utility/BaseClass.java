@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import Pom.HomePage;
 import Pom.LoginPage;
@@ -25,46 +26,48 @@ public class BaseClass {
 	Property_Utility plib;
 	ChromeOptions options;
 
-	@BeforeSuite(groups = {"smoketest","regressiontest","sanitytest"})
+	@BeforeSuite(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BS() {
 		System.out.println("DataBase connection");
 	}
 
-	@BeforeTest(groups = {"smoketest","regressiontest","sanitytest"})
+	@BeforeTest(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BT() {
 		System.out.println("Parallel Execution");
 	}
 
-	@BeforeClass(groups = {"smoketest","regressiontest","sanitytest"})
-	public void BC() throws Throwable {
+	@Parameters("BROWSER")
+	@BeforeClass(groups = { "smoketest", "regressiontest", "sanitytest" })
+	public void BC(String BROWSER) throws Throwable {
 		System.out.println("@BeforeClass");
 		// Setup browser
-				plib = new Property_Utility();
-				String BROWSER = plib.getKeyValue("browser");
-				options = new ChromeOptions();
-				options.addArguments("--remote-allow-origins=*");
+	
+		Property_Utility plib = new Property_Utility();
+		String BROWSER1 = plib.getKeyValue("browser");
+		options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
 
-				driver = new ChromeDriver(options);
+		driver = new ChromeDriver(options);
 
-				if (BROWSER.equalsIgnoreCase("chrome")) {
-					WebDriverManager.chromedriver().setup();
-					driver = new ChromeDriver(options);
-				} else if (BROWSER.equalsIgnoreCase("firefox")) {
-					WebDriverManager.firefoxdriver().setup();
-					driver = new FirefoxDriver();
-				} else if (BROWSER.equalsIgnoreCase("edge")) {
-					WebDriverManager.edgedriver().setup();
-					driver = new EdgeDriver();
-				}
+		if (BROWSER1.equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver(options);
+		} else if (BROWSER1.equalsIgnoreCase("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		} else if (BROWSER1.equalsIgnoreCase("edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		}
 
-				driver.manage().window().maximize();
-				Wbdriver_utility wlib = new Wbdriver_utility();
-				wlib.implicitwait(driver);
-				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		Wbdriver_utility wlib = new Wbdriver_utility();
+		wlib.implicitwait(driver);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 	}
 
-	@BeforeMethod(groups = {"smoketest","regressiontest","sanitytest"})
+	@BeforeMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BM() throws Throwable {
 		driver.manage().window().maximize();
 		System.out.println("@BeforeMethod");
@@ -78,7 +81,7 @@ public class BaseClass {
 		System.out.println("Login Applicationn");
 	}
 
-	@AfterMethod(groups = {"smoketest","regressiontest","sanitytest"})
+	@AfterMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void AM() {
 		System.out.println("@AfterMethod");
 		HomePage home = new HomePage(driver);
@@ -86,18 +89,19 @@ public class BaseClass {
 		System.out.println("Logout Application");
 	}
 
-	@AfterClass(groups = {"smoketest","regressiontest","sanitytest"})
+	@AfterClass(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void Ac() {
 		System.out.println("@AfterClass");
 		driver.quit();
 		System.out.println("Browser closed");
 	}
-@AfterTest(groups = {"smoketest","regressiontest","sanitytest"})
+
+	@AfterTest(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void AT() {
 		System.out.println("Parallel Execution Done");
 	}
 
-@AfterSuite(groups = {"smoketest","regressiontest","sanitytest"})
+	@AfterSuite(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void AS() {
 		System.out.println("DataBase Connection close");
 	}

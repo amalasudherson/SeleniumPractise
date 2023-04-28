@@ -23,13 +23,15 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
 	protected WebDriver driver;
-	
+	protected HomePage home;
+
 	public BaseClass() {
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--remote-allow-origins=*");
+//		driver = new ChromeDriver(options);
+//		home = new HomePage(driver);
 	}
-	
+
 	@BeforeSuite(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BS() {
 		System.out.println("DataBase connection");
@@ -40,55 +42,34 @@ public class BaseClass {
 		System.out.println("Parallel Execution");
 	}
 
-	@Parameters("BROWSER")
+	// @Parameters("BROWSER")
 	@BeforeClass(groups = { "smoketest", "regressiontest", "sanitytest" })
-	public void BC(String BROWSER) throws Throwable {
+	public void BC() throws Throwable {
 		System.out.println("@BeforeClass");
-		// Setup browser
-	
-		Property_Utility plib = new Property_Utility();
-		String Browser = plib.getKeyValue("browser");
 
-		/*
-		 * if (Browser.equalsIgnoreCase("Chrome"))
-		 * 
-		 * { WebDriverManager.chromedriver().setup(); driver = new ChromeDriver(); }
-		 * 
-		 * else if (Browser.equalsIgnoreCase("firefox")) {
-		 * WebDriverManager.firefoxdriver().setup(); driver = new FirefoxDriver();
-		 * 
-		 * } else if (Browser.equalsIgnoreCase("edge")) {
-		 * WebDriverManager.edgedriver().setup(); driver = new EdgeDriver(); } else {
-		 * driver = new ChromeDriver(); } System.out.println("Launching browser"); }
-		 * 
-		 * {
-		 */
+		Property_Utility plib = new Property_Utility();
+		String BROWSER = plib.getKeyValue("browser");
 
 		String Key = "webdriver.chrome.driver";
 		String value = ("C:\\Users\\AmalaS\\Documents\\SeleniumData\\ExcelSheetData.xlsx");
 		System.setProperty(Key, value);
-		/*
-		 * ChromeOptions options = new ChromeOptions();
-		 * options.addArguments("--remote-allow-origins=*"); WebDriver driver = new
-		 * ChromeDriver(options);
-		 */
-		String BROWSER1 = plib.getKeyValue("browser");
+		
+
+		// Setup browser
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 
-		driver = new ChromeDriver(options);
-
-		if (BROWSER1.equalsIgnoreCase("chrome")) {
+		if (BROWSER.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
-		} else if (BROWSER1.equalsIgnoreCase("firefox")) {
+		} else if (BROWSER.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
-		} else if (BROWSER1.equalsIgnoreCase("edge")) {
+		} else if (BROWSER.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		}
-		
+
 		driver.manage().window().maximize();
 		Wbdriver_utility wlib = new Wbdriver_utility();
 		wlib.implicitwait(driver);
@@ -97,13 +78,12 @@ public class BaseClass {
 
 	@BeforeMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BM() throws Throwable {
-		
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-		driver = new ChromeDriver(options);
 
-
-		driver.manage().window().maximize();
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--remote-allow-origins=*");
+//		driver = new ChromeDriver(options);
+//
+//		driver.manage().window().maximize();
 		System.out.println("@BeforeMethod");
 		Property_Utility plib = new Property_Utility();
 		String URL = plib.getKeyValue("url");
@@ -118,7 +98,6 @@ public class BaseClass {
 	@AfterMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void AM() {
 		System.out.println("@AfterMethod");
-		HomePage home = new HomePage(driver);
 		home.signoutLink(driver);
 		System.out.println("Logout Application");
 	}

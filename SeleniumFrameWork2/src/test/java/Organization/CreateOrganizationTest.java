@@ -1,6 +1,7 @@
 package Organization;
 
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,51 +44,18 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateOrganizationTest extends BaseClass {
 
-	@Test(groups = {"smoketest","regressiontest","sanitytest"})
-	public void createOrganizationTest() throws Throwable {	
-		
-		//Wbdriver_utility wlib=new Wbdriver_utility();
-		//wlib.implicitwait(driver);
-
-		HomePage home = new HomePage(driver);
-		home.clickorganizationlinkText();
-
-		OrganizationCreationPage org = new OrganizationCreationPage(driver);
-		org.organizationcreateimage();
-		
-		Java_Utility jlib = new Java_Utility();
-		int RanNum = jlib.getRandomNum();
-		
-		Excel_Utility elib = new Excel_Utility();
-		String orgdata = elib.getExcelData("Organization", 0, 0) + RanNum;
-
-		org.organizationnamestext(orgdata);
-        org.savebutton();
-        
-		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
-	     validate.organizationValidation(driver, orgdata);
-		//Assert.assertEquals(actData, orgdata);
-		//Thread.sleep(2000);
-		//home.signoutLink(driver);
-		
-	}
-}
-
-
-
-
-/*public class CreateOrganizationTest extends BaseClass {
-
-	@Test(groups = {"smoketest","regressiontest","sanitytest"})
+	private String actData;
 
 	//@Test(groups = {"smoketest","regressiontest","sanitytest"})
+	@Test
 	public void createOrganizationTest() throws Throwable {	
 		
-		//Wbdriver_utility wlib=new Wbdriver_utility();
-		//wlib.implicitwait(driver);
 
-		HomePage home = new HomePage(driver);
+		Wbdriver_utility wlib=new Wbdriver_utility();
+		wlib.implicitwait(driver);
+		home = new HomePage(driver);
 		home.clickorganizationlinkText();
+		
 
 		OrganizationCreationPage org = new OrganizationCreationPage(driver);
 		org.organizationcreateimage();
@@ -96,29 +64,27 @@ public class CreateOrganizationTest extends BaseClass {
 		int RanNum = jlib.getRandomNum();
 		
 		Excel_Utility elib = new Excel_Utility();
-		String orgdata = elib.getExcelData("Organization", 0, 0) + RanNum;
+		String exceldata = elib.getExcelData("Organization", 0, 0) + RanNum;
 
-		org.organizationnamestext(orgdata);
-
-		org.savebutton();
-      
-        
+		org.organizationnamestext(exceldata);
+        org.savebutton();
+        System.out.println("1");
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
-		validate.organizationValidation(driver, orgdata);
-	    
-    //Assert.assertEquals(actData, orgdata);
-		//Thread.sleep(2000);
-		//home.signoutLink(driver);*/
-
-
-	
-	/*public void method1()
-	{
-		System.out.println("method running");
+	     validate.organizationValidation(driver, exceldata);
+	   //Assert.assertEquals(actData, exceldata);
+	     System.out.println("2");
+	     Thread.sleep(5000);
+//	     home.signoutLink(driver);	
 	}
 
+
+
+
+
+
+
 	
-	@Test(groups = "smoketest")
+	/*@Test(groups = "smoketest")
 	public void CampaignCreationTest() throws Throwable {
 
 		String key = "WebDriver driver=new ChromeDriver()";
@@ -186,6 +152,7 @@ public class CreateOrganizationTest extends BaseClass {
 		driver.findElement(By.linkText("Sign Out")).click();
 
 	}*/
+}
 
 
 

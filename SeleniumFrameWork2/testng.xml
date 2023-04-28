@@ -5,7 +5,7 @@
     <classes>
       <class name="Campaigns.CeateCampaignwithProduct"/>
       <class name="Organization.CreateOrganizationTest"/>
-      <class name="Campaigns.CampaignCreation1"/>
+      <class name="Campaigns.CampaignCreationTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

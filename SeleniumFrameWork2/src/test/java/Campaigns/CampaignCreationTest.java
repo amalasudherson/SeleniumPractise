@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Generic_Utility.BaseClass;
@@ -30,7 +31,7 @@ public class CampaignCreationTest {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 		WebDriver driver = new ChromeDriver(options);
-		// WebDriver driver1 = new ChromeDriver(options);
+	
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -61,8 +62,6 @@ public class CampaignCreationTest {
 		 */	 
 		
 		FileInputStream fis = new FileInputStream(".\\src\\test\\resources\\propertyFileData.properties"); 
-		
-		                                           
 		Properties pro = new Properties();
 		pro.load(fis);
 		String URL = pro.getProperty("url");
@@ -115,7 +114,9 @@ public class CampaignCreationTest {
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
 
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
-		validate.campaingnValidation(driver, CampData);
+	   validate.campaingnValidation(driver, CampData);
+		
+		
 
 		 String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
 		//String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
@@ -128,6 +129,7 @@ public class CampaignCreationTest {
 		}
 
 		// home.signoutLink(driver);
+		Assert.assertEquals(actdata, CampData);
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
 		driver.findElement(By.linkText("Sign Out")).click();

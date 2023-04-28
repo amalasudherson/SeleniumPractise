@@ -1,5 +1,6 @@
 package Organization;
 
+
 import org.testng.annotations.Test;
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,27 +44,71 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class CreateOrganizationTest extends BaseClass {
 
 	@Test(groups = {"smoketest","regressiontest","sanitytest"})
-	public void createOrganizationTest() throws Throwable {		
+	public void createOrganizationTest() throws Throwable {	
+		
+		//Wbdriver_utility wlib=new Wbdriver_utility();
+		//wlib.implicitwait(driver);
 
 		HomePage home = new HomePage(driver);
 		home.clickorganizationlinkText();
 
 		OrganizationCreationPage org = new OrganizationCreationPage(driver);
 		org.organizationcreateimage();
+		
 		Java_Utility jlib = new Java_Utility();
 		int RanNum = jlib.getRandomNum();
+		
+		Excel_Utility elib = new Excel_Utility();
+		String orgdata = elib.getExcelData("Organization", 0, 0) + RanNum;
+
+		org.organizationnamestext(orgdata);
+        org.savebutton();
+        
+		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
+	     validate.organizationValidation(driver, orgdata);
+		//Assert.assertEquals(actData, orgdata);
+		//Thread.sleep(2000);
+		//home.signoutLink(driver);
+		
+	}
+}
+
+
+
+
+/*public class CreateOrganizationTest extends BaseClass {
+
+	@Test(groups = {"smoketest","regressiontest","sanitytest"})
+
+	//@Test(groups = {"smoketest","regressiontest","sanitytest"})
+	public void createOrganizationTest() throws Throwable {	
+		
+		//Wbdriver_utility wlib=new Wbdriver_utility();
+		//wlib.implicitwait(driver);
+
+		HomePage home = new HomePage(driver);
+		home.clickorganizationlinkText();
+
+		OrganizationCreationPage org = new OrganizationCreationPage(driver);
+		org.organizationcreateimage();
+		
+		Java_Utility jlib = new Java_Utility();
+		int RanNum = jlib.getRandomNum();
+		
 		Excel_Utility elib = new Excel_Utility();
 		String orgdata = elib.getExcelData("Organization", 0, 0) + RanNum;
 
 		org.organizationnamestext(orgdata);
 
 		org.savebutton();
+      
+        
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
 		validate.organizationValidation(driver, orgdata);
+	    
+    //Assert.assertEquals(actData, orgdata);
 		//Thread.sleep(2000);
-		//home.signoutLink(driver);
-		
-	}
+		//home.signoutLink(driver);*/
 
 
 	
@@ -142,7 +187,6 @@ public class CreateOrganizationTest extends BaseClass {
 
 	}*/
 
-}
 
 
 		

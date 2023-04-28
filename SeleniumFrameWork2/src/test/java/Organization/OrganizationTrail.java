@@ -77,26 +77,26 @@ package Organization;
 			String BROWSER = plib.getKeyValue("browser");
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
-			WebDriver driver = new ChromeDriver(options);
+			WebDriver driver;
 			
-			if (BROWSER.equalsIgnoreCase("chrome")) {
+			
+		  driver = new ChromeDriver(options);
+		  if (BROWSER.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup();
-				driver = new ChromeDriver();
+				driver = new ChromeDriver(options);
 			} else if (BROWSER.equalsIgnoreCase("firefox")) {
 				WebDriverManager.firefoxdriver().setup();
 				driver = new FirefoxDriver();
 			} else if (BROWSER.equalsIgnoreCase("edge")) {
 				WebDriverManager.edgedriver().setup();
 				driver = new EdgeDriver();
-			} else {
-				driver = new ChromeDriver();
-			}
+			} else
 
 			driver.manage().window().maximize();
 
 			Wbdriver_utility wlib = new Wbdriver_utility();
 			wlib.implicitwait(driver);
-			// driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+			 driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
 			String URL = plib.getKeyValue("url");
 			String USERNAME = plib.getKeyValue("username");
 			String PASSWORD = plib.getKeyValue("password");

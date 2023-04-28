@@ -18,6 +18,7 @@ public class Wbdriver_utility {
 	 * wait for page to load before indentifying any sychronized element in DOM
 	 * 	@author Shobha
 	 */
+	@SuppressWarnings("deprecation")
 	public void waitForPageToLoad(WebDriver driver)
 	{
 		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
@@ -27,6 +28,7 @@ public class Wbdriver_utility {
 	 * @author Amala
 	 */
 	
+	@SuppressWarnings("deprecation")
 	public void scriptTimeOut(WebDriver driver)
 	{
 		driver.manage().timeouts().setScriptTimeout(20,TimeUnit.SECONDS);
@@ -38,7 +40,7 @@ public class Wbdriver_utility {
 	 */
 	public void waitForElementWithCustomTimeOut(WebDriver driver,WebElement Element,int pollingTime)
 	{
-		FluentWait wait=new FluentWait(driver);
+		FluentWait<WebDriver> wait=new FluentWait<WebDriver>(driver);
 	    wait.pollingEvery(Duration.ofSeconds(20));	
 	    wait.until(ExpectedConditions.elementToBeClickable(Element));
 	}
@@ -69,6 +71,7 @@ public class Wbdriver_utility {
 	 *@param driver
 	 *@author Amala 
 	 */
+	//public void switchToAlertAndAccpect(WebDriver driver)
 	public void switchToAlertAndAccpect(WebDriver driver)
 	{
 		driver.switchTo().alert().accept();
@@ -90,8 +93,9 @@ public class Wbdriver_utility {
 	 * @author Amala
 	 */
 	public void switchToFrame(WebDriver driver,int index)
-	{
+	{ 
 		driver.switchTo().frame(index);
+	
 		}
 	/**
 	 * 
@@ -162,9 +166,13 @@ public class Wbdriver_utility {
 		date.toString().replace(" "," ").replace(":","-");
 		//TakesScreenshot ts=(TakesScreenshot)driver;
 		return null;
+	
+
 	}
-	public void implicitwait(WebDriver driver) {
-		// TODO Auto-generated method stub
+	public void implicitwait(WebDriver driver) 
+		{
+			driver.manage().timeouts().setScriptTimeout(20,TimeUnit.SECONDS);
+		}
 		
 	}
-	}
+	

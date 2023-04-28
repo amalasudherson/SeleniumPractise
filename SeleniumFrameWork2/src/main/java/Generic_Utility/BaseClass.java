@@ -23,9 +23,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
 	protected WebDriver driver;
-	Property_Utility plib;
-	ChromeOptions options;
-
+	
+	public BaseClass() {
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
+	}
+	
 	@BeforeSuite(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BS() {
 		System.out.println("DataBase connection");
@@ -43,8 +47,33 @@ public class BaseClass {
 		// Setup browser
 	
 		Property_Utility plib = new Property_Utility();
+		String Browser = plib.getKeyValue("browser");
+
+		/*
+		 * if (Browser.equalsIgnoreCase("Chrome"))
+		 * 
+		 * { WebDriverManager.chromedriver().setup(); driver = new ChromeDriver(); }
+		 * 
+		 * else if (Browser.equalsIgnoreCase("firefox")) {
+		 * WebDriverManager.firefoxdriver().setup(); driver = new FirefoxDriver();
+		 * 
+		 * } else if (Browser.equalsIgnoreCase("edge")) {
+		 * WebDriverManager.edgedriver().setup(); driver = new EdgeDriver(); } else {
+		 * driver = new ChromeDriver(); } System.out.println("Launching browser"); }
+		 * 
+		 * {
+		 */
+
+		String Key = "webdriver.chrome.driver";
+		String value = ("C:\\Users\\AmalaS\\Documents\\SeleniumData\\ExcelSheetData.xlsx");
+		System.setProperty(Key, value);
+		/*
+		 * ChromeOptions options = new ChromeOptions();
+		 * options.addArguments("--remote-allow-origins=*"); WebDriver driver = new
+		 * ChromeDriver(options);
+		 */
 		String BROWSER1 = plib.getKeyValue("browser");
-		options = new ChromeOptions();
+		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
 
 		driver = new ChromeDriver(options);
@@ -59,16 +88,21 @@ public class BaseClass {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		}
-
+		
 		driver.manage().window().maximize();
 		Wbdriver_utility wlib = new Wbdriver_utility();
 		wlib.implicitwait(driver);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
 	}
 
 	@BeforeMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BM() throws Throwable {
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
+
+
 		driver.manage().window().maximize();
 		System.out.println("@BeforeMethod");
 		Property_Utility plib = new Property_Utility();

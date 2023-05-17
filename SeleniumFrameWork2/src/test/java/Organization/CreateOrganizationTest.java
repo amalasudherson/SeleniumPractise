@@ -25,7 +25,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.internal.Debug;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -44,10 +44,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateOrganizationTest extends BaseClass {
 
-	private String actData;
 
-	//@Test(groups = {"smoketest","regressiontest","sanitytest"})
-	@Test
+
+	@Test(groups = {"smoketest","regressiontest","sanitytest"})
+	
 	public void createOrganizationTest() throws Throwable {	
 		
 
@@ -70,11 +70,11 @@ public class CreateOrganizationTest extends BaseClass {
         org.savebutton();
         System.out.println("1");
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
-	     validate.organizationValidation(driver, exceldata);
-	   //Assert.assertEquals(actData, exceldata);
+	     String actData = validate.organizationValidation(driver, exceldata);
+	   Assert.assertEquals(actData, exceldata);
 	     System.out.println("2");
 	     Thread.sleep(5000);
-//	     home.signoutLink(driver);	
+	     home.signoutLink(driver);	
 	}
 
 

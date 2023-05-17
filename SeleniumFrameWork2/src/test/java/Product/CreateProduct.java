@@ -141,7 +141,7 @@ public class CreateProduct extends BaseClass  {
 	
 	pro.savebutton();
 	//driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-	
+	System.out.println("1");
 	ValidationAndVerificationPage validate=new ValidationAndVerificationPage(driver);
 	
 	validate.productsValidation(driver, ProductsData);
@@ -155,8 +155,10 @@ public class CreateProduct extends BaseClass  {
 	{
 		System.out.println("Fail");
 	}*/
-	
-	//home.signoutLink(driver);
+	Thread.sleep(5000);
+	System.out.println("2");
+	 Thread.sleep(5000);
+	home.signoutLink(driver);
 //	driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
 //	driver.findElement(By.linkText("Sign Out")).click();
 	

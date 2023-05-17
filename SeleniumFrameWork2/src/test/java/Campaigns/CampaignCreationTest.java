@@ -33,7 +33,7 @@ public class CampaignCreationTest {
 		WebDriver driver = new ChromeDriver(options);
 	
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		// 3rd approach to launch multiple through property file browser
 		/*

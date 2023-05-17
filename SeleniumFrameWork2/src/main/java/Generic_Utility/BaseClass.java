@@ -97,9 +97,10 @@ public class BaseClass {
 
 	@AfterMethod(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void AM() {
-		System.out.println("@AfterMethod");
-		home.signoutLink(driver);
-		System.out.println("Logout Application");
+		//System.out.println("@AfterMethod");
+		//HomePage home=new HomePage(driver);
+		//home.signoutLink(driver);
+		//System.out.println("Logout Application");
 	}
 
 	@AfterClass(groups = { "smoketest", "regressiontest", "sanitytest" })

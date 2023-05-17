@@ -7,11 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ValidationAndVerificationPage {
 
-	public ValidationAndVerificationPage(WebDriver driver) {
+	public ValidationAndVerificationPage(WebDriver driver) 
+	{
 		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(xpath = "//span[@class='dvHeaderText']")
+	//@FindBy(xpath = "//span[@id='dtlview OrganizationName']")
 	private WebElement actualOrganizationData;
 	@FindBy(xpath = "//span[@class='dvHeaderText']")
 	private WebElement actualProductsData;
@@ -24,7 +26,7 @@ public class ValidationAndVerificationPage {
 	}
 
 	// bussiness logics
-	public void organizationValidation(WebDriver driver, String data) {
+	public String organizationValidation(WebDriver driver, String data) {
 		String actData = actualOrganizationData.getText();
 
 		if (actData.contains(data)) {
@@ -32,9 +34,10 @@ public class ValidationAndVerificationPage {
 		} else {
 			System.out.println("fail");
 		}
+		return actData;
 	}
 
-	public void productsValidation(WebDriver driver, String data) {
+	public String productsValidation(WebDriver driver, String data) {
 		String actData = actualProductsData.getText();
 		
 		if (actData.contains(data)) {
@@ -42,9 +45,10 @@ public class ValidationAndVerificationPage {
 		} else {
 			System.out.println("fail");
 		}
+		return actData;
 	}
 
-	public void campaingnValidation(WebDriver driver, String data) {
+	public String campaingnValidation(WebDriver driver, String data) {
 		String actData = actualcampaingnsData.getText();
 
 		if (actData.contains(data)) {
@@ -52,10 +56,11 @@ public class ValidationAndVerificationPage {
 		} else {
 			System.out.println("fail");
 		}
+		return actData;
 		
 	}
 
-	public void ValidationandVerificationofProductdeletion(WebDriver driver, String data) {
+	public String ValidationandVerificationofProductdeletion(WebDriver driver, String data) {
 		String actData = actualProductsData.getText();
 	
 		
@@ -64,5 +69,33 @@ public class ValidationAndVerificationPage {
 		} else {
 			System.out.println("fail");
 		}
+		return actData;
 	}
-}
+
+	public String ValidationandVerificationofCampaignAddition(WebDriver driver, String data) {
+		String actData = actualcampaingnsData.getText();
+
+		if (actData.contains(data))
+		{
+			System.out.println("pass");
+		} else {
+			System.out.println("fail");
+		}
+		return actData;
+		
+	}
+
+	public String ValidationandVerificationofProductAddition(WebDriver driver, String data) {
+String actData = actualProductsData.getText();
+		
+		if (actData.contains(data)) {
+			System.out.println("pass");
+		} else {
+			System.out.println("fail");
+		}
+		return actData;
+	}
+		
+	}
+		
+	

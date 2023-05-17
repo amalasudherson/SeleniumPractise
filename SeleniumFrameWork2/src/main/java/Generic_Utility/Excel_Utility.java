@@ -1,6 +1,9 @@
 package Generic_Utility;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -11,6 +14,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class Excel_Utility {
 
+	private POIFSFileSystem fis1;
 	/**
 	 * This method is used to fetch data from Excel
 	 * 
@@ -43,5 +47,29 @@ public class Excel_Utility {
 		return data;
 
 	}
+	public Object[][] readMultipleData(String SheetName) throws Throwable {
+		FileInputStream fis1 = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
+		Workbook book = WorkbookFactory.create(fis1);
+		
+	Sheet sh = book.getSheet(SheetName);
+		int lastRow = sh.getLastRowNum()+1;
+		int lastCell = sh.getRow(0).getLastCellNum();
+		
+		
+		//Sheet sheet = book.getSheet(SheetName);
+		//int numrow = Sheet.getPhysicalNumberOfRows();//num of rows
+		//int numcell = Sheet.getRow(0).getLastCellNum();
 
+		Object[][] obj = new Object[lastRow][lastCell];
+		
+		
+		for (int i=0;i<lastRow;i++)
+		{
+			for (int j=0;j<lastCell;j++);
+			{
+				obj[i][lastCell] =sh.getRow(i).getCell(lastCell).getStringCellValue();
+			}
+		}
+		return obj;
+	}
 }

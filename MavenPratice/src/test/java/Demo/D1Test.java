@@ -1,18 +1,21 @@
 package Demo;
 
 import org.apache.poi.hpsf.Property;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
+
+import Generic_Utility.BaseClass;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class D1Test {
 
 	@Test // (groups = "smokeTest")
-	public void sample() {
+	public void sample() throws Throwable {
 		//String BROWSER1 = plib.getKeyValue("browser");
 		WebDriver driver = null;
 		var options = new ChromeOptions();
@@ -34,6 +37,10 @@ public class D1Test {
 			WebDriverManager.chromedriver().create();
 
 		}
+		Thread.sleep(1000);
+		System.out.println("1");
+		driver.get("http://localhost:8888/");
 		//driver.get(URl);
+		
 	}
 }

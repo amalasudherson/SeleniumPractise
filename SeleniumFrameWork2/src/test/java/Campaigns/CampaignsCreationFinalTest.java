@@ -22,7 +22,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CampaignsCreationFinalTest extends BaseClass {
 
-	@Test(groups = "smoketest")
+	@Test(groups = {"smoketest","regressiontest","sanitytest"})
 	public void CampaignCreation1() throws Throwable {
 
 		// driver.get(URL);
@@ -41,12 +41,14 @@ public class CampaignsCreationFinalTest extends BaseClass {
 		cam.campaignnametext(CampData);
 
 		cam.savebutton();
+		 System.out.println("1");
 
 		ValidationAndVerificationPage validate = new ValidationAndVerificationPage(driver);
 		validate.campaingnValidation(driver, CampData);
-		 home.signoutLink(driver);
-		
-
+		//Assert.assertEquals(actData, exceldata);
+	     System.out.println("2");
+	     Thread.sleep(5000);
+	     home.signoutLink(driver);	
+	    
 	}
-
 }

@@ -31,9 +31,7 @@ public class Browser {
 		
 		
 	String URL = pro.getProperty("url");
-	@SuppressWarnings("unused")
 	String USERNAME = pro.getProperty("username");
-	@SuppressWarnings("unused")
 	String PASSWORD = pro.getProperty("password");
 	driver.get(URL);
 	

@@ -1,4 +1,4 @@
-package Organization;
+package Product;
 
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -15,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CreateOrganization {
+public class CreateProduct {
 
 	public static void main(String[] args) throws Throwable {
 
@@ -40,39 +40,41 @@ public class CreateOrganization {
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 		driver.findElement(By.id("submitButton")).click();
-
-		driver.findElement(By.linkText("Organizations")).click();
-		driver.findElement(By.xpath("//img[@alt='Create Organization...']")).click();
-
+		
+		driver.findElement(By.xpath("//a[text()='Products']")).click();
+		driver.findElement(By.xpath("//img[@alt='Create Product...']")).click();
+		
 		Random ran=new Random();
 		int RanNum = ran.nextInt();
 		
 		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book = WorkbookFactory.create(fes);
-		Sheet sheet = book.getSheet("Organization");
-		Row row = sheet.getRow(1);
+		Sheet sheet = book.getSheet("Product");
+		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
-		String exceldata = cell.getStringCellValue()+RanNum;
-
-		driver.findElement(By.name("accountname")).sendKeys(exceldata);
-		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-	   String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
-	   if(actdata.contains(exceldata))
-	   {
-		  System.out .println("pass");
-	   }
-	   else
-		   System.out.println("fail");
+		String productdata = cell.getStringCellValue();
+ 
 		
-		 Thread.sleep(2000);
-		 driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
-		 driver.findElement(By.linkText("Sign Out")).click();
-		 
+        driver.findElement(By.name("productname")).sendKeys(productdata);
 
-		// String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
-
+        
+        driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+        String actdata = driver.findElement(By.cssSelector("span.lvtHeaderText")).getText();
+        if(actdata.contains(productdata)) 
+        	
+        {
+        	System.out.println("pass");
+        	
+        }
+        else
+        {
+        	System.out.println("fail");
+        	
+        }
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
+        driver.findElement(By.linkText("Sign Out")).click();
+        
 	}
 
-		
-	}
-
+}

@@ -52,7 +52,7 @@ public class CreateProduct {
 		Sheet sheet = book.getSheet("Product");
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
-		String productdata = cell.getStringCellValue();
+		String productdata = cell.getStringCellValue()+RanNum;
  
 		
         driver.findElement(By.name("productname")).sendKeys(productdata);

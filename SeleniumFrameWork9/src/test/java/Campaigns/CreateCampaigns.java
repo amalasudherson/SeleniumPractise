@@ -54,7 +54,7 @@ public class CreateCampaigns {
 		Sheet sheet = book.getSheet("Campaigns");
 		Row row = sheet.getRow(2);
 		Cell cell = row.getCell(1);
-		String Campaignsdata = cell.getStringCellValue();
+		String Campaignsdata = cell.getStringCellValue()+RanNum;
 
 		driver.findElement(By.name("campaignname")).sendKeys(Campaignsdata);
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();

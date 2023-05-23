@@ -17,6 +17,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import Generic_Utility.Excel_Utility;
+import Generic_Utility.Java_Utility;
+import Generic_Utility.Property_Utility;
+
 public class CreateCampaignWithProduct {
 
 	public static void main(String[] args) throws Throwable {
@@ -29,14 +33,19 @@ public class CreateCampaignWithProduct {
 		WebDriver driver = new ChromeDriver(options);
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		Property_Utility plib=new Property_Utility();
+		String URL = plib.getKeyValue("url");
+		String USERNAME = plib.getKeyValue("username");
+		String PASSWORD = plib.getKeyValue("password");
 
-		FileInputStream fis = new FileInputStream("./src/test/resources/PropertyFileData.properties");
+		/*FileInputStream fis = new FileInputStream("./src/test/resources/PropertyFileData.properties");
 		Properties pro = new Properties();
 		pro.load(fis);
 
 		String URL = pro.getProperty("url");
 		String USERNAME = pro.getProperty("username");
-		String PASSWORD = pro.getProperty("password");
+		String PASSWORD = pro.getProperty("password");*/
 		driver.get(URL);
 		// driver.get("http://localhost:8888/");
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
@@ -46,15 +55,22 @@ public class CreateCampaignWithProduct {
 		driver.findElement(By.xpath("//a[text()='Products']")).click();
 		driver.findElement(By.xpath("//img[@alt='Create Product...']")).click();
 
-		Random ran = new Random();
-		int RanNum = ran.nextInt();
+		//Random ran = new Random();
+		//int RanNum = ran.nextInt();
 
-		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
+		
+		Java_Utility jlib=new Java_Utility();
+		int RanNum = jlib.getRandomNum();
+		
+		Excel_Utility elib=new Excel_Utility();
+		String productdata = elib.getExcelData("Product", 1, 1)+RanNum;
+		
+		/*FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book = WorkbookFactory.create(fes);
 		Sheet sheet = book.getSheet("Product");
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
-		String productdata = cell.getStringCellValue() + RanNum;
+		String productdata = cell.getStringCellValue() + RanNum;*/
 
 		driver.findElement(By.name("productname")).sendKeys(productdata);
 
@@ -64,13 +80,16 @@ public class CreateCampaignWithProduct {
 		driver.findElement(By.linkText("More")).click();
 		driver.findElement(By.name("Campaigns")).click();
 		driver.findElement(By.xpath("//img[@alt='Create Campaign...']")).click();
-
-		FileInputStream fes1 = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
+		
+		
+		Excel_Utility elib1=new Excel_Utility();
+		String Campaignsdata = elib1.getExcelData("Campaigns", 0, 0)+RanNum;
+		/*FileInputStream fes1 = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book1 = WorkbookFactory.create(fes1);
 		Sheet sheet1 = book1.getSheet("Campaigns");
 		Row row1 = sheet1.getRow(2);
 		Cell cell1 = row1.getCell(1);
-		String Campaignsdata = cell1.getStringCellValue() + RanNum;
+		String Campaignsdata = cell1.getStringCellValue() + RanNum;*/
 
 		System.out.println("Campaignsdata: " + Campaignsdata);
 

@@ -8,8 +8,16 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class Excel_Utility {
+	/**
+	 * This method ois used to fetch data from Excel
+	 * @param sheetName
+	 * @param rowNum
+	 * @param cellNum
+	 * @return
+	 * @throws Throwable
+	 * @author AmalaS
+	 */
 
-	private static final String value = null;
 
 	public String getExcelData(String sheetName, int rowNum, int cellNum) throws Throwable {
 		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");

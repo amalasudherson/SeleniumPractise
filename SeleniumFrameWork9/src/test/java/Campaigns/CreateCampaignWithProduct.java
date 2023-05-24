@@ -20,6 +20,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
 import Generic_Utility.Property_Utility;
+import Generic_Utility.Webdriver_Utility;
 
 public class CreateCampaignWithProduct {
 
@@ -29,10 +30,16 @@ public class CreateCampaignWithProduct {
 		String Value = ".\\src\\main\\resources\\chromedriver.exe";
 		System.setProperty(key, Value);
 		ChromeOptions options = new ChromeOptions();
+		
 		options.addArguments("--remote-allow-origins=*");
 		WebDriver driver = new ChromeDriver(options);
+		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		
+		Webdriver_Utility wlib=new Webdriver_Utility();
+		wlib.implicityWait(driver);
+		
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		Property_Utility plib=new Property_Utility();
 		String URL = plib.getKeyValue("url");

@@ -90,7 +90,8 @@ public class CreateCampaignWithProduct {
 		
 		
 		Excel_Utility elib1=new Excel_Utility();
-		String Campaignsdata = elib1.getExcelData("Campaigns", 0, 0)+RanNum;
+		String Campaignsdata = elib1.getExcelDataFormatter("Campaigns", 0, 0)+RanNum;
+		
 		/*FileInputStream fes1 = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book1 = WorkbookFactory.create(fes1);
 		Sheet sheet1 = book1.getSheet("Campaigns");
@@ -103,8 +104,10 @@ public class CreateCampaignWithProduct {
 		driver.findElement(By.name("campaignname")).sendKeys(Campaignsdata);
 		driver.findElement(By.xpath("//img[@alt='Select']")).click();
 		
+		wlib.switchwindow(driver,"Products&action");
+		
 		//for Switching window
-		Set<String> allId = driver.getWindowHandles();//org  //cont  //prd
+		/*Set<String> allId = driver.getWindowHandles();//org  //cont  //prd
 		Iterator<String> id = allId.iterator();
 
 		while (id.hasNext()) {
@@ -116,14 +119,16 @@ public class CreateCampaignWithProduct {
 			{
 				break;
 			}
-		}
+		}*/
 		driver.findElement(By.id("search_txt")).sendKeys(productdata);
 		driver.findElement(By.name("search")).click();
 
 		// dynamic xpath
 		driver.findElement(By.xpath("//a[text()='" + productdata + "']")).click();
+		
+		wlib.switchwindow(driver,"Campaigns&action");
 
-		Set<String> allId1 = driver.getWindowHandles();//org  //cont  //prd
+		/*Set<String> allId1 = driver.getWindowHandles();//org  //cont  //prd
 		Iterator<String> id1 = allId1.iterator();
 
 		while (id1.hasNext()) {
@@ -135,7 +140,7 @@ public class CreateCampaignWithProduct {
 			{
 				break;
 			}
-		}
+		}*/
 		
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
 		

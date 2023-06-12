@@ -1,6 +1,7 @@
 package Product;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -10,12 +11,17 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class CreateProduct {
+import Generic_Utility.Excel_Utility;
+import Generic_Utility.Java_Utility;
+
+public class DeleteProduct {
+
 
 	public static void main(String[] args) throws Throwable {
 
@@ -71,14 +77,13 @@ public class CreateProduct {
         	System.out.println("Validation fail");
         	
         }
+        driver.findElement(By.xpath("//input[@title='Delete [Alt+D]']")).click();
+        
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        
         Thread.sleep(2000);
         driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
         driver.findElement(By.linkText("Sign Out")).click();
-        
-       
-        
-        
-        
 	}
-
 }

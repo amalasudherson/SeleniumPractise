@@ -43,14 +43,15 @@ import Pom.ValidationAndVerificationPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CreateOrganizationTest extends BaseClass {
-
+	WebDriver driver=null;
 
 
 	@Test(groups = {"smoketest","regressiontest","sanitytest"})
 	
 	public void createOrganizationTest() throws Throwable {	
 		
-
+		Property_Utility plib=new Property_Utility();
+		driver.manage().window().maximize();
 		Wbdriver_utility wlib=new Wbdriver_utility();
 		wlib.implicitwait(driver);
 		home = new HomePage(driver);

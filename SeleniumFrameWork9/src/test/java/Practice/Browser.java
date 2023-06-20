@@ -21,8 +21,8 @@ public class Browser {
 		options.addArguments("--remote-allow-origins=*");
 		WebDriver driver = new ChromeDriver(options);
 
-	
-		// FileInputStream fis = new FileInputStream("C:\\Users\\AmalaS\\Documents\\PropertyfileData.properties");
+		// FileInputStream fis = new
+		// FileInputStream("C:\\Users\\AmalaS\\Documents\\PropertyfileData.properties");
 		FileInputStream fis = new FileInputStream("./src/test/resources/PropertyFileData.properties");
 
 		Properties pro = new Properties();
@@ -33,7 +33,7 @@ public class Browser {
 		String PASSWORD = pro.getProperty("Password");
 		driver.get(URL);
 
-	   // driver.get("https://demo.actitime.com/login.do");
+		// driver.get("https://demo.actitime.com/login.do");
 		driver.findElement(By.id("username")).sendKeys(USERNAME);
 		driver.findElement(By.name("pwd")).sendKeys(PASSWORD);
 		driver.findElement(By.id("loginButton")).click();

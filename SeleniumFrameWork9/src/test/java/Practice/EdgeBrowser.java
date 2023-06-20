@@ -13,19 +13,19 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class EdgeBrowser {
 
+	public static void main(String[] args) throws Throwable {
 
+		/*
+		 * WebDriver driver = webDriverManager.edgedriver().create();
+		 * driver.get("https://demo.automationtesting.in");
+		 * 
+		 * Thread.sleep(3000);
+		 */
 
-	public static void main(String[] args) throws Throwable{
-
-	/*WebDriver driver = webDriverManager.edgedriver().create();
-	 driver.get("https://demo.automationtesting.in");
-	 
-	 Thread.sleep(3000); */
-		
 		WebDriver driver = WebDriverManager.chromedriver().create();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--remote-allow-origins=*");
-		
+
 	}
 
 }

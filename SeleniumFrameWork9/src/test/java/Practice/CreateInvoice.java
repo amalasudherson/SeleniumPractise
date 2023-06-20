@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class CreateInvoice {
 
 	public static void main(String[] args) throws Throwable {
-	
+
 		String key = "webdriver.chrome.driver";
 		String Value = ".\\src\\main\\resources\\chromedriver.exe";
 		System.setProperty(key, Value);
@@ -43,11 +43,11 @@ public class CreateInvoice {
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 		driver.findElement(By.id("submitButton")).click();
-		
+
 		driver.findElement(By.linkText("Contacts")).click();
 		driver.findElement(By.xpath("//img[@alt='Create Contact...']")).click();
-		//driver.findElement(By.name("salutationtype")).click();
-		
+		// driver.findElement(By.name("salutationtype")).click();
+
 		Random ran = new Random();
 		int RanNum = ran.nextInt();
 
@@ -58,16 +58,8 @@ public class CreateInvoice {
 		Cell cell = row.getCell(0);
 		String ContactData = cell.getStringCellValue() + RanNum;
 
-		
 		driver.findElement(By.name("firstname")).sendKeys(ContactData);
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-		
-	
-		
-		
-	
-		
+
 	}
 }
-		
-		

@@ -26,8 +26,9 @@ public class DynamicXpath {
 		driver.findElement(By.xpath("//span[@class='DayPicker-NavButton DayPicker-NavButton--next']")).click();
 		String month = "July 2023";
 		String date = "15";
-		
-		driver.findElement(By.xpath("//div[text()='"+month+"']/ancestor::div[@class='DayPicker-Months']/descendant::p[text()='"+date+"']")).click();
+
+		driver.findElement(By.xpath("//div[text()='" + month
+				+ "']/ancestor::div[@class='DayPicker-Months']/descendant::p[text()='" + date + "']")).click();
 
 	}
 

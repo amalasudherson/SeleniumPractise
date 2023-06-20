@@ -22,7 +22,6 @@ import Generic_Utility.Java_Utility;
 
 public class DeleteProduct {
 
-
 	public static void main(String[] args) throws Throwable {
 
 		String key = "webdriver.chrome.driver";
@@ -46,44 +45,49 @@ public class DeleteProduct {
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 		driver.findElement(By.id("submitButton")).click();
-		
+
 		driver.findElement(By.xpath("//a[text()='Products']")).click();
 		driver.findElement(By.xpath("//img[@alt='Create Product...']")).click();
-		
-		Random ran=new Random();
-		int RanNum = ran.nextInt();
-		
+
+		Random ran = new Random();
+		int RanNum = ran.nextInt(1000);
+
 		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book = WorkbookFactory.create(fes);
 		Sheet sheet = book.getSheet("Product");
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
-		String productdata = cell.getStringCellValue()+RanNum;
- 
-		
-        driver.findElement(By.name("productname")).sendKeys(productdata);
+		String productdata = cell.getStringCellValue() + RanNum;
 
-        
-        driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-        String actdata = driver.findElement(By.cssSelector("span.lvtHeaderText")).getText();
-        if(actdata.contains(productdata)) 
-        	
-        {
-        	System.out.println("Validation pass");
-        	
-        }
-        else
-        {
-        	System.out.println("Validation fail");
-        	
-        }
-        driver.findElement(By.xpath("//input[@title='Delete [Alt+D]']")).click();
-        
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-        
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
-        driver.findElement(By.linkText("Sign Out")).click();
+		driver.findElement(By.name("productname")).sendKeys(productdata);
+
+		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+		driver.findElement(By.xpath("(//a[text()='Products'])[1]")).click();
+
+		driver.findElement(By.xpath(
+				"//table[@class='lvt small']/tbody//td//a[text()='" + productdata + "']/../preceding-sibling::td[2]"))
+				.click();
+		driver.findElement(By.xpath("//input[@value='Delete']")).click();
+		Alert alert = driver.switchTo().alert();
+		alert.accept();
 	}
+
 }
+
+/*
+ * String actdata =
+ * driver.findElement(By.cssSelector("span.lvtHeaderText")).getText();
+ * if(actdata.contains(productdata))
+ * 
+ * { System.out.println("Validation pass");
+ * 
+ * } else { System.out.println("Validation fail");
+ * 
+ * } driver.findElement(By.xpath("//input[@title='Delete [Alt+D]']")).click();
+ * 
+ * Alert alert = driver.switchTo().alert(); alert.accept();
+ * 
+ * Thread.sleep(2000);
+ * driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).
+ * click(); driver.findElement(By.linkText("Sign Out")).click(); } }
+ */

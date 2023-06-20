@@ -39,13 +39,13 @@ public class BaseClass {
 
 	@BeforeTest(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BT() {
-		System.out.println("Parallel Execution");
+		System.out.println("Parallel Execution   2");
 	}
 
 	// @Parameters("BROWSER")
 	@BeforeClass(groups = { "smoketest", "regressiontest", "sanitytest" })
 	public void BC() throws Throwable {
-		System.out.println("@BeforeClass");
+		System.out.println("@BeforeClass 1");
 
 		Property_Utility plib = new Property_Utility();
 		String BROWSER = plib.getKeyValue("browser");
@@ -92,7 +92,7 @@ public class BaseClass {
 		driver.get(URL);
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.loginToApp(USERNAME, PASSWORD);
-		System.out.println("Login Applicationn");
+		System.out.println("Login Application");
 	}
 
 	@AfterMethod(groups = { "smoketest", "regressiontest", "sanitytest" })

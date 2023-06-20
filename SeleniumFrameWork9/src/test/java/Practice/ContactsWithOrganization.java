@@ -42,19 +42,19 @@ public class ContactsWithOrganization {
 		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
 		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
 		driver.findElement(By.id("submitButton")).click();
-		
+
 		driver.findElement(By.linkText("Organizations")).click();
 		driver.findElement(By.xpath("//img[@alt='Create Organization...']")).click();
 
-		Random ran=new Random();
+		Random ran = new Random();
 		int RanNum = ran.nextInt();
-		
+
 		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book = WorkbookFactory.create(fes);
 		Sheet sheet = book.getSheet("Organization");
 		Row row = sheet.getRow(0);
 		Cell cell = row.getCell(0);
-		String Organizationdata = cell.getStringCellValue()+RanNum;
+		String Organizationdata = cell.getStringCellValue() + RanNum;
 
 		driver.findElement(By.name("accountname")).sendKeys(Organizationdata);
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
@@ -64,80 +64,59 @@ public class ContactsWithOrganization {
 		driver.findElement(By.xpath("//img[@alt='Create Contact...']")).click();
 		driver.findElement(By.name("lastname")).sendKeys("Amala");
 		driver.findElement(By.xpath("//img[@alt='Select']")).click();
-		
-		//for Switching window
-				Set<String> allId = driver.getWindowHandles();//org  //cont  //prd
-				Iterator<String> id = allId.iterator();
 
-				while (id.hasNext()) {
-					String wid = id.next();  //org
-					driver.switchTo().window(wid);
-					String title = driver.getTitle();
+		// for Switching window
+		Set<String> allId = driver.getWindowHandles();// org //cont //prd
+		Iterator<String> id = allId.iterator();
 
-					if (title.contains("Accounts&action")) 
-					{
-						break;
-					}
-				}
-		
-		
+		while (id.hasNext()) {
+			String wid = id.next(); // org
+			driver.switchTo().window(wid);
+			String title = driver.getTitle();
+
+			if (title.contains("Accounts&action")) {
+				break;
+			}
+		}
+
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys(Organizationdata);
 		driver.findElement(By.xpath("//input[@type='button']")).click();
-		
-		
+
 		// dynamic xpath
 		driver.findElement(By.xpath("//a[text()='" + Organizationdata + "']")).click();
-		
-		Set<String> allId1 = driver.getWindowHandles();//org  //cont  //prd
+
+		Set<String> allId1 = driver.getWindowHandles();// org //cont //prd
 		Iterator<String> id1 = allId1.iterator();
 
 		while (id1.hasNext()) {
-			String wid1 = id1.next(); //org
+			String wid1 = id1.next(); // org
 			driver.switchTo().window(wid1);
 			String title = driver.getTitle();
 
-			if (title.contains("Contacts&action"))
-			{
+			if (title.contains("Contacts&action")) {
 				break;
 			}
-			
+
 		}
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-		
-		//Validation Part
+
+		// Validation Part
 		String act = driver.findElement(By.xpath("//span[@id='dtlview_Last Name']")).getText();
-		if(act.contains("Amala"))
+		if (act.contains("Amala"))
 			System.out.println("Con Pass");
-			
-			else
-			{
-				System.out.println("Con fail");
-			}
+
+		else {
+			System.out.println("Con fail");
+		}
 		String actdata = driver.findElement(By.id("mouseArea_Organization Name")).getText();
-		if(actdata.contains(Organizationdata))
+		if (actdata.contains(Organizationdata))
 			System.out.println("Org Pass");
-		else
-		{
+		else {
 			System.out.println("Org fail");
 		}
-			
+
 		Thread.sleep(2000);
-		 driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
-		 driver.findElement(By.linkText("Sign Out")).click();
+		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
+		driver.findElement(By.linkText("Sign Out")).click();
 	}
 }
-		
-		
-
-			
-			
-
-			
-
-	
-				
-		
-		
-	
-
-

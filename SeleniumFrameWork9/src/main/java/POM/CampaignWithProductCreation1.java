@@ -78,6 +78,7 @@ public class CampaignWithProductCreation1 {
 	}
 
 	public void productnametext(String proname) {
+
 		productnametext.sendKeys(proname);
 	}
 

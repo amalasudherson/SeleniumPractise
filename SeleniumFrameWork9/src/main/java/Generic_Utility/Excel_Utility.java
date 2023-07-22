@@ -23,7 +23,8 @@ public class Excel_Utility {
 	public String getExcelData(String sheetName, int rowNum, int cellNum) throws Throwable {
 		FileInputStream fes = new FileInputStream("./src/test/resources/ExcelSheetData.xlsx");
 		Workbook book = WorkbookFactory.create(fes);
-		Sheet sheet = book.getSheet(sheetName);
+		Sheet sheet = book.getSheet("Organization");
+		//Sheet sheet = book.getSheet(sheetName);
 		Row row = sheet.getRow(rowNum);
 		Cell cell = row.getCell(cellNum);
 		String value = cell.getStringCellValue();
@@ -35,6 +36,9 @@ public class Excel_Utility {
 		Workbook book = WorkbookFactory.create(fes);
 		DataFormatter format = new DataFormatter();
 		String data = format.formatCellValue(book.getSheet(sheetName).getRow(rowNum).getCell(cellNum));
+		//DataFormatter format1 = new DataFormatter();
+		//String data1 = format.formatCellValue(book.getSheet(sheetName).getRow(rowNum).getCell(cellNum));
+		
 		return data;
 	}
 }

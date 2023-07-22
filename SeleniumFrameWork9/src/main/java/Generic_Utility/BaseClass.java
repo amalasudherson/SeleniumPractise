@@ -4,6 +4,7 @@ package Generic_Utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
@@ -41,9 +42,18 @@ public class  BaseClass {
 		String BROWSER = plib.getKeyValue("browser");
 		if(BROWSER.equalsIgnoreCase("chrome"))
 		{
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-		}
+			//WebDriverManager.chromedriver().setup();
+			//driver = new ChromeDriver();
+			//ChromeOptions chromeOptions = new ChromeOptions();
+			WebDriver driver = WebDriverManager.chromedriver().create();
+			//WebDriver driver = new ChromeDriver();
+			//driver.manage().window().maximize();
+			
+			
+			//ChromeOptions options = new ChromeOptions();
+			//options.addArguments("--remote-allow-origins=*");
+			//driver = new ChromeDriver(options);
+			}
 		else if(BROWSER.equalsIgnoreCase("edge"))
 		{
 			WebDriverManager.edgedriver().setup();

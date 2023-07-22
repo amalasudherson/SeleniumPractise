@@ -40,6 +40,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			
 			<groupId>Qspider</groupId>
 			<artifactId>SeleniumFrameWork2</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

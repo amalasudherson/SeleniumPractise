@@ -21,6 +21,7 @@ public class OrganizationCreationPage1 {
 	@FindBy(xpath = "//input[@title='Save [Alt+S]']")
 	private WebElement saveButton;
 
+
 	// getter Method
 
 	public synchronized WebElement getOrganizationCreationImage() {

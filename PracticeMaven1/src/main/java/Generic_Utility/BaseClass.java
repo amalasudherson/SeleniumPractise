@@ -60,6 +60,7 @@ public class  BaseClass {
 		}
 		System.out.println("Launching browser");
 	}
+
 	
 	@BeforeMethod
 	public void BM() throws Throwable

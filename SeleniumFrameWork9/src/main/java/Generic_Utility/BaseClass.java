@@ -36,40 +36,31 @@ public class  BaseClass {
 	}
 	
 	@BeforeClass
-	public void BC() throws Throwable
-	{
-		Property_Utility plib = new Property_Utility();
-		String BROWSER = plib.getKeyValue("browser");
-		if(BROWSER.equalsIgnoreCase("chrome"))
-		{
-			//WebDriverManager.chromedriver().setup();
-			//driver = new ChromeDriver();
-			//ChromeOptions chromeOptions = new ChromeOptions();
-			WebDriver driver = WebDriverManager.chromedriver().create();
-			//WebDriver driver = new ChromeDriver();
-			//driver.manage().window().maximize();
-			
-			
-			//ChromeOptions options = new ChromeOptions();
-			//options.addArguments("--remote-allow-origins=*");
-			//driver = new ChromeDriver(options);
+			public void BC() throws Throwable
+			{
+				Property_Utility plib = new Property_Utility();
+				String BROWSER = plib.getKeyValue("browser");
+				if(BROWSER.equalsIgnoreCase("chrome"))
+				{
+					WebDriverManager.chromedriver().setup();
+					driver = new ChromeDriver();
+				}
+				else if(BROWSER.equalsIgnoreCase("edge"))
+				{
+					WebDriverManager.edgedriver().setup();
+					driver = new EdgeDriver();
+				}
+				else if(BROWSER.equalsIgnoreCase("firefox"))
+				{
+					WebDriverManager.firefoxdriver().setup();
+					driver = new FirefoxDriver();
+				}
+				else 
+				{
+					driver = new ChromeDriver();
+				}
+				System.out.println("Launching browser");
 			}
-		else if(BROWSER.equalsIgnoreCase("edge"))
-		{
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
-		}
-		else if(BROWSER.equalsIgnoreCase("firefox"))
-		{
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-		}
-		else 
-		{
-			driver = new ChromeDriver();
-		}
-		System.out.println("Launching browser");
-	}
 	
 	@BeforeMethod
 	public void BM() throws Throwable

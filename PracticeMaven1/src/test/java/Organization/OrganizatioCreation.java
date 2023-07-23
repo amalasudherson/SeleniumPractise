@@ -52,18 +52,24 @@ public class OrganizatioCreation {
 		Row row = sheet.getRow(0);
 		org.apache.poi.ss.usermodel.Cell cell = row.getCell(0);
 		String Orgdata = cell.getStringCellValue()+RanNum;
-
+        System.out.println(1);
 		driver.findElement(By.name("accountname")).sendKeys(Orgdata);
+        System.out.println(2);
+
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
 		//String actdata = driver.findElement(By.xpath("//span[@id='dtlview_Organization Name']")).getText();
 		//String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
-		//String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
+        System.out.println(3);
+    	Thread.sleep(2000);
+		String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
+        System.out.println(4);
+
 		
-		/*if (actdata.contains(Orgdata)) 
+		if (actdata.contains(Orgdata)) 
 		{
 			System.out.println("pass");
 		} else
-			System.out.println("fail");*/
+			System.out.println("fail");
 
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();

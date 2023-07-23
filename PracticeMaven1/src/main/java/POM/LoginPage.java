@@ -16,7 +16,7 @@ public class LoginPage {
 	}
 
 	// declaretion
-	@FindBy(name = "user_name")
+	@FindBy(name="user_name")
 	private WebElement usernameEdtTxt;
 
 	@FindBy(name = "user_password")

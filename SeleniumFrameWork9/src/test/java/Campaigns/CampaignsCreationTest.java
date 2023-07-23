@@ -1,26 +1,13 @@
 package Campaigns;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Properties;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
 import org.testng.annotations.Test;
 
 import Generic_Utility.BaseClass;
 import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
-import Generic_Utility.Webdriver_Utility;
+
 import POM.CampaignCreationPage1;
 import POM.HomePage;
 import POM.ValidationAndVerificationPage1;

@@ -43,7 +43,8 @@ public class  BaseClass {
 				if(BROWSER.equalsIgnoreCase("chrome"))
 				{
 					WebDriverManager.chromedriver().setup();
-					driver = new ChromeDriver();
+					WebDriver driver = new ChromeDriver();
+					driver.manage().window().maximize();
 				}
 				else if(BROWSER.equalsIgnoreCase("edge"))
 				{

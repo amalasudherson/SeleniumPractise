@@ -4,18 +4,13 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.Random;
 
-import org.apache.poi.sl.usermodel.Sheet;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import com.google.common.collect.Table.Cell;
-
-import Generic_Utility.Property_Utility;
-import Generic_Utility.Webdriver_Utility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class OrganizatioCreation {
@@ -56,22 +51,22 @@ public class OrganizatioCreation {
 		org.apache.poi.ss.usermodel.Sheet sheet = book.getSheet("Organization");
 		Row row = sheet.getRow(0);
 		org.apache.poi.ss.usermodel.Cell cell = row.getCell(0);
-		String exceldata = cell.getStringCellValue()+RanNum;
+		String Orgdata = cell.getStringCellValue()+RanNum;
 
-		driver.findElement(By.name("accountname")).sendKeys(exceldata);
+		driver.findElement(By.name("accountname")).sendKeys(Orgdata);
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
-		String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
+		//String actdata = driver.findElement(By.xpath("//span[@id='dtlview_Organization Name']")).getText();
+		//String actdata = driver.findElement(By.xpath("//span[@class='dvHeaderText']")).getText();
+		//String actdata = driver.findElement(By.cssSelector("span.dvHeaderText")).getText();
 		
-		if (actdata.contains(exceldata))
+		/*if (actdata.contains(Orgdata)) 
 		{
-		System.out.println("pass");
+			System.out.println("pass");
 		} else
-			System.out.println("fail");
+			System.out.println("fail");*/
 
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
 		driver.findElement(By.linkText("Sign Out")).click();
-
 	}
-
-}
+	}

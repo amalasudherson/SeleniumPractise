@@ -75,8 +75,7 @@ public class DeleteProduct1 {
 
 		Alert alt = driver.switchTo().alert();
 		alt.accept();
-		List<WebElement> list = driver
-				.findElements(By.xpath("(//table[@class='lvt small']/tbody/tr/td[3])[position()>1]"));
+		List<WebElement> list = driver.findElements(By.xpath("(//table[@class='lvt small']/tbody/tr/td[3])[position()>1]"));
 
 		boolean flag = false;
 		for (WebElement wb : list) {

@@ -78,13 +78,12 @@ public class  BaseClass {
 	}
 	
 	@AfterMethod
-	public void AM()
+	public void AM() throws Throwable
 	{
 		HomePage home=new HomePage(driver);
 		home.signoutLink(driver);
 		System.out.println("Logout Application");
 	}
-	
 	@AfterClass
 	public void AC()
 	{

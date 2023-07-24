@@ -1,10 +1,13 @@
 package Campaigns;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Generic_Utility.BaseClass;
 import Generic_Utility.Excel_Utility;
 import Generic_Utility.Java_Utility;
+import Generic_Utility.Property_Utility;
+import Generic_Utility.Webdriver_Utility;
 import POM.CampaignCreationPage1;
 import POM.HomePage;
 import POM.ValidationAndVerificationPage1;
@@ -17,7 +20,12 @@ public class CampaignsCreationTest extends BaseClass {
 	public void CampaignCreation1() throws Throwable {
 
 		// driver.get(URL);
-		HomePage home = new HomePage(driver);
+		Property_Utility plib = new Property_Utility();
+		driver.manage().window().maximize();
+
+		Webdriver_Utility wlib = new Webdriver_Utility();
+		wlib.implicityWait(driver);
+		HomePage home=new HomePage(driver);
 		home.morelink(driver);
 		home.campaignslinkText();
 		CampaignCreationPage1 cam = new CampaignCreationPage1(driver);
@@ -27,20 +35,17 @@ public class CampaignsCreationTest extends BaseClass {
 		Excel_Utility elib = new Excel_Utility();
 		String CampData = elib.getExcelData("Campaigns", 0, 0) + RanNum;
 		cam.campaignnametext(CampData);
-
-		cam.savebutton();
-		 System.out.println("1");
-
-		ValidationAndVerificationPage1 validate = new ValidationAndVerificationPage1(driver);
-		validate.campaingnValidation(driver, CampData);
-		 home.signoutLink(driver);
-
-
-		//Assert.assertEquals(actData, exceldata);
-	     System.out.println("2");
-	     Thread.sleep(5000);
-	     home.signoutLink(driver);	
-
+        System.out.println(1);
+        cam.savebutton();
+        System.out.println(2);
+        
+        ValidationAndVerificationPage1 validate=new ValidationAndVerificationPage1(driver);
+        System.out.println(2);
+    	Thread.sleep(2000);
+		validate.organizationValidation(driver, CampData);
+		System.out.println(3);
+		Thread.sleep(2000);
+		home.signoutLink(driver);
 	}
 
 

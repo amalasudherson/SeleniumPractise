@@ -8,7 +8,6 @@
 	</groups>
   <test thread-count="5" name="Test">
     <classes>
-      <class name="Campaigns.CeateCampaignwithProduct"/>
       <class name="Organization.CreateOrganizationTest"/>
       <class name="Campaigns.CampaignCreation1"/>
     </classes>

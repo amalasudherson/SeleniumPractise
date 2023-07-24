@@ -12,7 +12,7 @@ import Generic_Utility.Java_Utility;
 import Generic_Utility.Webdriver_Utility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CreateCampWithProd1 {
+public class CreateCampWithProd1Test {
 		
 		public static void main(String[] args) throws Throwable {
 

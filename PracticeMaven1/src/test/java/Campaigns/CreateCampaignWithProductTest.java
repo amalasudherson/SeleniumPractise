@@ -116,8 +116,10 @@ public class CreateCampaignWithProductTest extends BaseClass {
 		// dynamic xpath
 		// driver.findElement(By.xpath("//a[text()='iphone")).click();
 		driver.findElement(By.xpath("//a[text()='" + productdata + "']")).click();
+		System.out.println(-0);
 
 		wlib.switchwindow(driver, "Campaigns&action");
+		System.out.println(-1);
 
 		/*
 		 * Set<String> allId1 = driver.getWindowHandles();//org //cont //prd
@@ -130,6 +132,7 @@ public class CreateCampaignWithProductTest extends BaseClass {
 		 */
 
 		driver.findElement(By.xpath("//input[@title='Save [Alt+S]']")).click();
+		System.out.println(-2);
 
 		// validation Pat
 		String act = driver.findElement(By.xpath("//span[@id='dtlview_Campaign Name']")).getText();
@@ -145,8 +148,10 @@ public class CreateCampaignWithProductTest extends BaseClass {
 			System.out.println("product fail");
 		}
 		Thread.sleep(2000);
+		System.out.println(-3);
 		driver.findElement(By.xpath("//img[@src='themes/softed/images/user.PNG']")).click();
-		driver.findElement(By.linkText("Sign Out")).click();
+		System.out.println(-4);
+		//driver.findElement(By.linkText("Sign Out")).click();
 
 //		for (String win: window) {
 //			driver.switchTo().window(win);

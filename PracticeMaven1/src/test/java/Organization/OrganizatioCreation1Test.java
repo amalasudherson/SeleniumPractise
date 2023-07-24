@@ -11,7 +11,7 @@ import POM.HomePage;
 import POM.OrganizationCreationPage1;
 import POM.ValidationAndVerificationPage1;
 
-public class OrganizatioCreationTest1 {
+public class OrganizatioCreation1Test {
 
 	public class CreateOrganization1Test extends BaseClass{
 	

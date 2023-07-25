@@ -39,19 +39,17 @@
 			<version>7.7.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		
 			
-			<groupId>Qspider</groupId>
-			<artifactId>SeleniumFrameWork2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+			</dependencies>
 	<profiles>
 		<profile>
 			<id>smokeTest</id>
 			<build>
 				<pluginManagement>
 					<plugins>
+						
+						
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>

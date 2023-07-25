@@ -12,7 +12,8 @@ public class currenturlsampletest {
 		String title = driver.getTitle();
 		System.out.println(title);
 		String currenturl = driver.getCurrentUrl();
-		System.setOut(currenturl);
+		//System.setOut(currenturl);
+		System.out.println(currenturl);
 
 	}
 

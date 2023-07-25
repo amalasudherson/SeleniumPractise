@@ -12,7 +12,7 @@ import dev.failsafe.Timeout;
 
 public class HandingSynchronizationtImplicitExplicitTest {
 
-	private static final String WebDriverWait wait = null;
+	//private static final String WebDriverWait wait = null;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,8 +24,8 @@ public class HandingSynchronizationtImplicitExplicitTest {
      driver.manage().timeouts().implicitlyWait(10,TimeUnit.MICROSECONDS);
 	WebElement links = driver.findElement(By.xpath("//a"));
 	//Explicit wait
-     WebDriver wait= new WebDriver(driver,10);
-     wait.until(ExpectedConditions.titleContains("enter"));
+ //    WebDriver wait= new chromedriver(driver,10);
+    // wait.until(ExpectedConditions.titleContains("enter"));
 
 	}
 

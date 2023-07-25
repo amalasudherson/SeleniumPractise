@@ -15,7 +15,7 @@ public class AmazonTest1 {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.amazon.com/");
 		WebElement element = driver.findElement(By.xpath("//*[@id='glow-ingress-line2']"));
-		var txt = element.getText();
+		String txt = element.getText();
 		driver.close();
 
 	}

@@ -3,6 +3,7 @@ package Practice1;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,34 +14,34 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Browser11 
 {
-
-	
-	public static void main(String[]args) throws Throwable
+@Test
+	public void Browser11Test()  throws Throwable
 	{
-		
-	String Key="webdriver.chrome.driver";
-	String Value="./src/main/resources/chromedriver.exe";
-	System.setProperty(Key,Value);
-	WebDriverManager.chromedriver().setup();
-	WebDriver driver = new ChromeDriver();
-	
-	FileInputStream fis=new FileInputStream("./src/test/resources/PropertyFileData.properties");
-	
-	Properties pro=new Properties();
-	pro.load(fis);
-	
-	
-String URL = pro.getProperty("url");
-String USERNAME = pro.getProperty("Username");
-String PASSWORD = pro.getProperty("Password");
-driver.get(URL);
+	//public static void main(String[]args) throws Throwable
+	{
+		String key = "webdriver.chrome.driver";
+		String Value = ".\\src\\main\\resources\\chromedriver.exe";
+		System.setProperty(key, Value);
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
-driver.findElement(By.id("username")).sendKeys(USERNAME);
-driver.findElement(By.name("pwd")).sendKeys(PASSWORD);
-driver.findElement(By.id("loginButton")).click();
+		FileInputStream fis = new FileInputStream("./src/test/resources/PropertyFileData.properties");
+		Properties pro = new Properties();
+		pro.load(fis);
+
+		String URL = pro.getProperty("url");
+		String USERNAME = pro.getProperty("username");
+		String PASSWORD = pro.getProperty("password");
+		driver.get(URL);
+		// driver.get("http://localhost:8888/");
+		driver.findElement(By.name("user_name")).sendKeys(USERNAME);
+		driver.findElement(By.name("user_password")).sendKeys(PASSWORD);
+		driver.findElement(By.id("submitButton")).click();
+	}
 	}
 }
-
 	
 	
 	

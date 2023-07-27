@@ -1,5 +1,6 @@
 package Organization;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Generic_Utility.BaseClass;
@@ -11,10 +12,11 @@ import POM.HomePage;
 import POM.OrganizationCreationPage1;
 import POM.ValidationAndVerificationPage1;
 
-public class OrganizatioCreation1Test {
-
-	public class CreateOrganization1Test extends BaseClass{
+//@Listeners(Generic_Utility.ListenersClass.class)
+public class OrganizatioCreation1Test extends BaseClass{
 	
+	//@Test(group = {"smoketest","regressiontest","sanitytest"})
+		//@Test(retryAnalyzer = Generic_Utility.RetryExample.class)
 @Test
 	public void CreateOrganization() throws Throwable { 
 		
@@ -38,13 +40,14 @@ public class OrganizatioCreation1Test {
 		
 		ValidationAndVerificationPage1 validate=new ValidationAndVerificationPage1(driver);
 	
-		validate.organizationValidation(driver, exceldata);
-		home.signoutLink(driver);
+	   String actData = validate.organizationValidation(driver, exceldata);
+		//Assert.assertEquals(actData, exceldata);
+		//home.signoutLink(driver);
 		
 		
 		
 		}
 	}
-}
+
 
 

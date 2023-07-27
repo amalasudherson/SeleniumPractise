@@ -15,13 +15,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
 
+import Generic_Utility.BaseClass;
 import Generic_Utility.Property_Utility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class CreateCampaign1 {
-
+public class CreateCampaign1 extends BaseClass {
+	@Test
 	public static void main(String[] args) throws Throwable {
+		
+		
 /*
 		String key="webdriver.chrome.driver";
 		String Value="./src/main/resources/chromedriver.exe";

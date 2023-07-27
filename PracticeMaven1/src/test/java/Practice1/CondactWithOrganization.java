@@ -15,14 +15,14 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class CondactWithOrganization {
-
-	
-	public static void main(String[] args) throws Throwable {
+@Test
+	public void CondactWithOrganizationTest() throws Throwable {
+	//public static void main(String[] args) throws Throwable {
 
 		String key = "webdriver.chrome.driver";
 		String Value = ".\\src\\main\\resources\\chromedriver.exe";

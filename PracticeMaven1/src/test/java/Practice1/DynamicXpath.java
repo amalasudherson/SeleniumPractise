@@ -6,12 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DynamicXpath {
-
-	public static void main(String[] args) throws Throwable {
+@Test
+public void DynmicXpath1Test() throws Throwable {
+	//public static void main(String[] args) throws Throwable {
 
 		String key="webdriver.chrome.driver";
 		String Value="./src/main/resources/chromedriver.exe";
@@ -26,8 +28,8 @@ public class DynamicXpath {
         
         Thread.sleep(1000);
 
-        String month = "April 2023";
-        String date = "30";
+        String month = "August 2023";
+        String date = "4";
 
 driver.findElement(By.xpath("//div[text()='"+month+"']"
 		+ "/ancestor::div[@class='DayPicker-Month']/descendant::p[text()='"+date+"']")).click();

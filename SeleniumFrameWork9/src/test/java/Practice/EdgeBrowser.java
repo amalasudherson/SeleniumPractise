@@ -15,16 +15,16 @@ public class EdgeBrowser {
 
 	public static void main(String[] args) throws Throwable {
 
-		/*
-		 * WebDriver driver = webDriverManager.edgedriver().create();
-		 * driver.get("https://demo.automationtesting.in");
-		 * 
-		 * Thread.sleep(3000);
-		 */
+		
+		  WebDriver driver = WebDriverManager.edgedriver().create();
+		  driver.get("https://demo.automationtesting.in");
+		  
+		  Thread.sleep(3000);
+		 
 
-		WebDriver driver = WebDriverManager.chromedriver().create();
+		/*WebDriver driver = WebDriverManager.chromedriver().create();
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
+		options.addArguments("--remote-allow-origins=*");*/
 
 	}
 

@@ -41,11 +41,11 @@ public class CampaignsCreationTest extends BaseClass {
         
         ValidationAndVerificationPage1 validate=new ValidationAndVerificationPage1(driver);
         System.out.println(2);
-    	Thread.sleep(2000);
+
 		validate.organizationValidation(driver, CampData);
-		System.out.println(3);
-		Thread.sleep(2000);
-		home.signoutLink(driver);
+		//System.out.println(3);
+		//Thread.sleep(2000);
+		//home.signoutLink(driver);
 	}
 
 
